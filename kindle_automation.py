@@ -391,11 +391,15 @@ class KindleAutomation:
             # 5. OCRでテキスト抽出
             full_text = self.extract_text_from_all_images(screenshots)
             
-            # 6. AI要約
+            # 6. 抽出テキストをGoogle Driveに保存
+            text_path = self.config.get_text_output_path()
+            drive_manager.upload_file(text_path, "extracted_text.txt", use_book_folder=True)
+            
+            # 7. AI要約
             summarizer = AISummarizer()
             summary = summarizer.summarize_text(full_text)
             
-            # 7. 要約をGoogle Driveに保存
+            # 8. 要約をGoogle Driveに保存
             summary_path = self.config.get_summary_output_path()
             with open(summary_path, 'w', encoding='utf-8') as f:
                 f.write(summary or "要約に失敗しました")
