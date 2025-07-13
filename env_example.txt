@@ -1,0 +1,8 @@
+# OpenAI API設定
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Google Drive設定
+GOOGLE_DRIVE_FOLDER_ID=your_google_drive_folder_id_here
+
+# 書籍設定
+BOOK_TITLE=実際の書籍タイトルを入力してください 
