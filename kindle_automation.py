@@ -7,7 +7,7 @@ from PIL import Image
 import pytesseract
 from config import Config
 from google_drive_manager import GoogleDriveManager
-from ai_summarizer import AISummarizer
+
 import logging
 import subprocess
 
@@ -395,16 +395,7 @@ class KindleAutomation:
             text_path = self.config.get_text_output_path()
             drive_manager.upload_file(text_path, "extracted_text.txt", use_book_folder=True)
             
-            # 7. AI要約
-            summarizer = AISummarizer()
-            summary = summarizer.summarize_text(full_text)
-            
-            # 8. 要約をGoogle Driveに保存
-            summary_path = self.config.get_summary_output_path()
-            with open(summary_path, 'w', encoding='utf-8') as f:
-                f.write(summary or "要約に失敗しました")
-            
-            drive_manager.upload_file(summary_path, "summary.txt", use_book_folder=True)
+            logger.info("テキスト抽出とGoogle Driveアップロードが完了しました")
             
             logger.info("自動化ワークフローが完了しました")
             return True

@@ -33,7 +33,7 @@ cp env_example.txt .env
 ```
 
 `.env`ファイルを編集して以下を設定：
-- `OPENAI_API_KEY`: OpenAI APIキー
+
 - `GOOGLE_DRIVE_FOLDER_ID`: Google DriveのフォルダID（オプション）
 - `BOOK_TITLE`: 要約したい書籍のタイトル
 

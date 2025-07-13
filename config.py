@@ -16,9 +16,7 @@ class Config:
     GOOGLE_DRIVE_FOLDER_ID = os.getenv("GOOGLE_DRIVE_FOLDER_ID", "")
     GOOGLE_CREDENTIALS_FILE = "credentials.json"
     
-    # OpenAI設定
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-    OPENAI_MODEL = "gpt-3.5-turbo"
+
     
     # OCR設定
     OCR_LANGUAGE = "jpn"  # 日本語
@@ -30,20 +28,7 @@ class Config:
     TEXT_OUTPUT_FILE = "extracted_text.txt"
     SUMMARY_OUTPUT_FILE = "summary.txt"
     
-    # AI要約プロンプト
-    SUMMARY_PROMPT = """
-    以下のテキストを要約してください。以下の形式で出力してください：
 
-    1. 全体の要約（200字程度）
-    2. 主要なポイント（箇条書き）
-    3. 章ごとのまとめ
-    4. 作者の伝えたいこと
-    5. 特に学びがある部分
-    6. 重要事項
-
-    テキスト：
-    {text}
-    """
     
     def set_book_title(self, title):
         """書籍タイトルを動的に設定し、フォルダ構造を更新"""

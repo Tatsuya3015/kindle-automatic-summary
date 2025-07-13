@@ -21,13 +21,7 @@ def main():
     print("📋 設定確認:")
     automation = KindleAutomation()
     
-    # OpenAI APIキー確認
-    if automation.config.OPENAI_API_KEY:
-        print("✅ OpenAI APIキー: 設定済み")
-    else:
-        print("❌ OpenAI APIキー: 未設定")
-        print("   .envファイルにOPENAI_API_KEYを設定してください")
-        return
+
     
     # Google Drive設定確認
     if automation.config.GOOGLE_DRIVE_FOLDER_ID:
@@ -122,7 +116,6 @@ def main():
             print(f"📁 出力フォルダ: {automation.config.OUTPUT_FOLDER}")
             print(f"📸 スクリーンショット: {automation.config.get_screenshots_folder_path()}")
             print(f"📝 抽出テキスト: {automation.config.get_text_output_path()}")
-            print(f"🤖 AI要約: {automation.config.get_summary_output_path()}")
             print()
             print("🎉 お疲れさまでした！")
         else:

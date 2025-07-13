@@ -20,10 +20,7 @@ Kindleアプリで開いた書籍を自動でスクリーンショット撮影�
    - スクリーンショットを自動アップロード
    - 要約結果をGoogle Driveに保存
 
-4. **AI要約**
-   - OpenAI GPT-4を使用
-   - カスタマイズ可能な要約プロンプト
-   - 章ごとのまとめ、重要ポイント抽出
+
 
 ## システム構成
 
@@ -136,10 +133,7 @@ python3 kindle_automation.py
    - 全スクリーンショットを自動アップロード
    - 要約結果も自動保存
 
-8. **AI要約**
-   - OpenAI GPT-3.5-turboで自動要約
-   - 章ごとのまとめ、重要ポイント抽出
-   - 要約結果をGoogle Driveに保存
+
 
 ### 🧪 テスト実行
 ```bash
@@ -155,10 +149,7 @@ python3 test_automation.py
 
 ## 必要な設定
 
-### OpenAI APIキー
-- [OpenAI](https://platform.openai.com/)でアカウント作成
-- APIキーを取得
-- `.env`ファイルに設定
+
 
 ### Google Drive API（オプション）
 - Google Cloud Consoleでプロジェクト作成
@@ -170,7 +161,6 @@ python3 test_automation.py
 
 - **スクリーンショット**: `output/screenshots/`
 - **抽出テキスト**: `output/extracted_text.txt`
-- **AI要約**: `output/summary.txt`
 
 ## 注意事項
 
