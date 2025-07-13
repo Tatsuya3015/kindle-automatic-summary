@@ -13,6 +13,7 @@ class GoogleDriveManager:
     def __init__(self):
         self.config = Config()
         self.service = self._authenticate()
+        self.book_folder_id = None
         
     def _authenticate(self):
         """Google Drive APIの認証"""
@@ -38,15 +39,61 @@ class GoogleDriveManager:
         
         return build('drive', 'v3', credentials=creds)
     
-    def upload_file(self, file_path, filename=None):
+    def setup_book_folder(self, book_title):
+        """書籍タイトルに基づいたフォルダを作成"""
+        try:
+            # 書籍タイトルをファイル名に使用可能な形式に変換
+            safe_title = self._sanitize_filename(book_title)
+            
+            # フォルダを作成
+            self.book_folder_id = self.create_folder(safe_title)
+            
+            if self.book_folder_id:
+                logger.info(f"書籍フォルダを作成しました: {safe_title} (ID: {self.book_folder_id})")
+                return self.book_folder_id
+            else:
+                logger.error("書籍フォルダの作成に失敗しました")
+                return None
+                
+        except Exception as e:
+            logger.error(f"書籍フォルダの設定に失敗: {e}")
+            return None
+    
+    def _sanitize_filename(self, filename):
+        """ファイル名に使用できない文字を置換"""
+        # ファイル名に使用できない文字を置換
+        invalid_chars = '<>:"/\\|?*'
+        for char in invalid_chars:
+            filename = filename.replace(char, '_')
+        
+        # 連続するアンダースコアを1つに
+        while '__' in filename:
+            filename = filename.replace('__', '_')
+        
+        # 先頭と末尾のアンダースコアを削除
+        filename = filename.strip('_')
+        
+        # 空文字列の場合はデフォルト名を使用
+        if not filename:
+            filename = "unknown_book"
+        
+        return filename
+    
+    def upload_file(self, file_path, filename=None, use_book_folder=True):
         """ファイルをGoogle Driveにアップロード"""
         try:
             if filename is None:
                 filename = os.path.basename(file_path)
             
+            # アップロード先のフォルダIDを決定
+            if use_book_folder and self.book_folder_id:
+                parent_folder_id = self.book_folder_id
+            else:
+                parent_folder_id = self.config.GOOGLE_DRIVE_FOLDER_ID
+            
             file_metadata = {
                 'name': filename,
-                'parents': [self.config.GOOGLE_DRIVE_FOLDER_ID] if self.config.GOOGLE_DRIVE_FOLDER_ID else []
+                'parents': [parent_folder_id] if parent_folder_id else []
             }
             
             media = MediaFileUpload(file_path, resumable=True)
@@ -69,7 +116,7 @@ class GoogleDriveManager:
         
         uploaded_files = []
         for screenshot_path in screenshot_paths:
-            file_id = self.upload_file(screenshot_path)
+            file_id = self.upload_file(screenshot_path, use_book_folder=True)
             if file_id:
                 uploaded_files.append(file_id)
         

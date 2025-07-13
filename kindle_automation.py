@@ -378,8 +378,14 @@ class KindleAutomation:
                 logger.error("スクリーンショットが撮影できませんでした")
                 return False
             
-            # 4. Google Driveにアップロード
+            # 4. Google Driveに書籍フォルダを作成してアップロード
             drive_manager = GoogleDriveManager()
+            
+            # 書籍タイトルに基づいたフォルダを作成
+            book_folder_id = drive_manager.setup_book_folder(self.config.BOOK_TITLE)
+            if not book_folder_id:
+                logger.warning("Google Driveフォルダの作成に失敗しました。デフォルトフォルダにアップロードします。")
+            
             uploaded_files = drive_manager.upload_screenshots(screenshots)
             
             # 5. OCRでテキスト抽出
@@ -394,7 +400,7 @@ class KindleAutomation:
             with open(summary_path, 'w', encoding='utf-8') as f:
                 f.write(summary or "要約に失敗しました")
             
-            drive_manager.upload_file(summary_path, "summary.txt")
+            drive_manager.upload_file(summary_path, "summary.txt", use_book_folder=True)
             
             logger.info("自動化ワークフローが完了しました")
             return True
