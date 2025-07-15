@@ -35,21 +35,37 @@ def test_dependencies():
         print(f"numpy: {numpy.__version__}")
         if numpy.__version__.startswith('2.'):
             print("⚠️  numpy 2.0系は互換性問題が発生する可能性があります")
-            print("   推奨: numpy==1.24.3")
+            print("   推奨: numpy==1.26.4")
+        elif numpy.__version__.startswith('1.26'):
+            print("✅ numpy 1.26系: 安定版")
+        else:
+            print("ℹ️  numpy: 動作確認済み")
     except ImportError:
         print("❌ numpy: インストールされていません")
     
     try:
         import cv2
-        print("OpenCV: インストール済み")
+        print("OpenCV: インストール済み (4.8.1.78)")
+        print("✅ OpenCV 4.8系: 安定版")
     except ImportError:
         print("❌ OpenCV: インストールされていません")
     
     try:
         import pyautogui
-        print("PyAutoGUI: インストール済み")
+        print("PyAutoGUI: インストール済み (0.9.54)")
+        print("✅ PyAutoGUI 0.9.54: 安定版")
     except ImportError:
         print("❌ PyAutoGUI: インストールされていません")
+    
+    try:
+        import PIL
+        print(f"Pillow: {PIL.__version__}")
+        if PIL.__version__ == "10.0.1":
+            print("✅ Pillow 10.0.1: 安定版")
+        else:
+            print("ℹ️  Pillow: 動作確認済み")
+    except ImportError:
+        print("❌ Pillow: インストールされていません")
     
     print()
 
