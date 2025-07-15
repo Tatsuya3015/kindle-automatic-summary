@@ -13,8 +13,18 @@
 
 ### 1. 依存関係のインストール
 ```bash
+# 仮想環境を作成（推奨）
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 依存関係をインストール
 pip install -r requirements.txt
 ```
+
+**⚠️ 重要な注意事項:**
+- numpy 2.0系は互換性問題が発生する可能性があります
+- OpenCV 4.9.x系は安定性に問題がある場合があります
+- 問題が発生した場合は、requirements.txtのバージョンに戻してください
 
 ### 2. Tesseract OCRのインストール
 ```bash
@@ -92,6 +102,17 @@ automation.run_full_automation()  # max_pagesパラメータを削除
 - 認証情報が正しく設定されているか確認
 - フォルダIDが正しいか確認
 - インターネット接続を確認
+
+#### numpy/OpenCV互換性エラー
+- numpy 2.0系を使用している場合は1.24.3にダウングレード
+- OpenCV 4.9.x系を使用している場合は4.8.1.78にダウングレード
+- 仮想環境を完全にリセットしてから再インストール
+```bash
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## 出力ファイル
 - `output/screenshots/`: スクリーンショット画像

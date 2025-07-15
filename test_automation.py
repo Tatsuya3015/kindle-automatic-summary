@@ -26,6 +26,33 @@ def test_config():
     print(f"Tesseract パス: {config.TESSERACT_PATH}")
     print()
 
+def test_dependencies():
+    """依存関係のバージョンチェック"""
+    print("=== 依存関係バージョンチェック ===")
+    
+    try:
+        import numpy
+        print(f"numpy: {numpy.__version__}")
+        if numpy.__version__.startswith('2.'):
+            print("⚠️  numpy 2.0系は互換性問題が発生する可能性があります")
+            print("   推奨: numpy==1.24.3")
+    except ImportError:
+        print("❌ numpy: インストールされていません")
+    
+    try:
+        import cv2
+        print("OpenCV: インストール済み")
+    except ImportError:
+        print("❌ OpenCV: インストールされていません")
+    
+    try:
+        import pyautogui
+        print("PyAutoGUI: インストール済み")
+    except ImportError:
+        print("❌ PyAutoGUI: インストールされていません")
+    
+    print()
+
 def test_screenshot():
     """スクリーンショット機能のテスト"""
     print("=== スクリーンショットテスト ===")
@@ -114,6 +141,7 @@ def main():
     
     # 各機能のテスト
     test_config()
+    test_dependencies()
     test_screenshot()
     test_ocr()
     test_google_drive()
