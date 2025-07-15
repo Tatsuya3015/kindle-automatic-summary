@@ -13,7 +13,7 @@ from kindle_automation import KindleAutomation
 import time
 
 def main():
-    print("🚀 Kindle自動要約システム")
+    print("🚀 Kindle自動テキスト抽出システム")
     print("=" * 40)
     print()
     
@@ -41,7 +41,7 @@ def main():
     
     # 書籍タイトルの入力
     while True:
-        book_title = input("📚 要約したい書籍のタイトルを入力してください: ").strip()
+        book_title = input("📚 テキスト抽出したい書籍のタイトルを入力してください: ").strip()
         if book_title:
             break
         print("❌ 書籍タイトルを入力してください")

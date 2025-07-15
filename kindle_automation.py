@@ -405,11 +405,11 @@ class KindleAutomation:
             return False
 
 if __name__ == "__main__":
-    print("=== Kindle自動要約システム ===")
+    print("=== Kindle自動テキスト抽出システム ===")
     print()
     
     # 書籍タイトルの入力
-    book_title = input("要約したい書籍のタイトルを入力してください: ").strip()
+    book_title = input("テキスト抽出したい書籍のタイトルを入力してください: ").strip()
     
     if not book_title:
         print("書籍タイトルが入力されていません。プログラムを終了します。")
@@ -454,7 +454,6 @@ if __name__ == "__main__":
         print(f"📁 出力フォルダ: {automation.config.OUTPUT_FOLDER}")
         print(f"📸 スクリーンショット: {automation.config.OUTPUT_FOLDER}/{automation.config.SCREENSHOTS_FOLDER}")
         print(f"📝 抽出テキスト: {automation.config.OUTPUT_FOLDER}/{automation.config.TEXT_OUTPUT_FILE}")
-        print(f"🤖 AI要約: {automation.config.OUTPUT_FOLDER}/{automation.config.SUMMARY_OUTPUT_FILE}")
     else:
         print()
         print("❌ 処理中にエラーが発生しました")

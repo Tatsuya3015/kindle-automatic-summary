@@ -26,7 +26,6 @@ class Config:
     OUTPUT_FOLDER = "output"
     SCREENSHOTS_FOLDER = "screenshots"
     TEXT_OUTPUT_FILE = "extracted_text.txt"
-    SUMMARY_OUTPUT_FILE = "summary.txt"
     
 
     
@@ -44,7 +43,6 @@ class Config:
         self.OUTPUT_FOLDER = os.path.join("output", safe_title)
         self.SCREENSHOTS_FOLDER = "screenshots"
         self.TEXT_OUTPUT_FILE = "extracted_text.txt"
-        self.SUMMARY_OUTPUT_FILE = "summary.txt"
     
     def _sanitize_filename(self, filename):
         """ファイル名に使用できない文字を置換"""
@@ -74,6 +72,4 @@ class Config:
         """テキスト出力ファイルの完全パスを取得"""
         return os.path.join(self.OUTPUT_FOLDER, self.TEXT_OUTPUT_FILE)
     
-    def get_summary_output_path(self):
-        """要約出力ファイルの完全パスを取得"""
-        return os.path.join(self.OUTPUT_FOLDER, self.SUMMARY_OUTPUT_FILE) 
+ 

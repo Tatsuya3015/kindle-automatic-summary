@@ -1,6 +1,6 @@
-# Kindle自動要約システム
+# Kindle自動テキスト抽出システム
 
-Kindleアプリで開いた書籍を自動でスクリーンショット撮影し、OCRでテキスト抽出、AI要約を行う自動化ツールです。
+Kindleアプリで開いた書籍を自動でスクリーンショット撮影し、OCRでテキスト抽出を行う自動化ツールです。
 
 ## 機能
 
@@ -30,7 +30,7 @@ kindle-automatic-summary/
 ├── kindle_automation.py   # メインの自動化スクリプト
 ├── config.py             # 設定ファイル
 ├── google_drive_manager.py # Google Drive連携
-├── ai_summarizer.py      # AI要約機能
+
 ├── test_automation.py    # テストスクリプト
 ├── requirements.txt      # Python依存関係
 ├── setup_guide.md       # 詳細セットアップガイド
@@ -144,7 +144,7 @@ python3 test_automation.py
 - 設定ファイル読み込み
 - スクリーンショット撮影
 - OCR文字認識
-- AI要約
+
 - Google Drive連携
 
 ## 必要な設定
@@ -180,7 +180,7 @@ python3 test_automation.py
   - キーボード操作を避ける
   - 他のアプリに切り替えない
   - 画面の明度や設定を変更しない
-- インターネット接続が必要（AI要約、Google Drive連携）
+- インターネット接続が必要（Google Drive連携）
 
 ### セキュリティ
 - APIキーは`.env`ファイルで管理し、Gitにコミットしない

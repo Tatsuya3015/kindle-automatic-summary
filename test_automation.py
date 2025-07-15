@@ -109,7 +109,7 @@ def test_kindle_automation():
 
 def main():
     """メインテスト関数"""
-    print("Kindle自動要約システム テスト開始")
+    print("Kindle自動テキスト抽出システム テスト開始")
     print("=" * 50)
     
     # 各機能のテスト
